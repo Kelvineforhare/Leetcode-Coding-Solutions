@@ -5,7 +5,6 @@ public:
         int max = nums.size()-1;
         int mid = (max-min)/2;
         while(max-1 > min){
-            printf("min %d , mid %d , max %d\n",nums[min],nums[mid],nums[max]);
             if(nums[mid] < nums[max]){
                 max = mid;
             }
