@@ -20,14 +20,12 @@ public:
         if(!root){
             return true;
         }
-        printf("root val : %d , min: %d , max: %d \n",root->val,min,max);
-        double val = root->val;
-        if(val <= min || root->val >= max){
+        if(root->val <= min || root->val >= max){
             return false;
         }
         
         
-        return dfs(root->right,root->val,max) && dfs(root->left,min ,root->val );        
+        return dfs(root->right,root->val,max) && dfs(root->left,min ,root->val);        
         
     }
     
