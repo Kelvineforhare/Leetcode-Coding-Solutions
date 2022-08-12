@@ -12,41 +12,24 @@
 class Solution {
 public:
     bool isValidBST(TreeNode* root) {
+        return dfs(root,LONG_MIN, LONG_MAX);
+    }
+    
+    bool dfs(TreeNode* root, long long int min, long long int max){
+        
         if(!root){
             return true;
         }
-        if(root->right && !isValidBST(root->right)){
+        printf("root val : %d , min: %d , max: %d \n",root->val,min,max);
+        double val = root->val;
+        if(val <= min || root->val >= max){
             return false;
         }
-        if(root->left && !isValidBST(root->left)){
-            return false;
-        }
-        return isValidRight(root, root->right) && isValidLeft(root,root->left);
+        
+        
+        return dfs(root->right,root->val,max) && dfs(root->left,min ,root->val );        
         
     }
     
-    bool isValidRight(TreeNode* root, TreeNode* right){
-        if(right){
-            printf("root val : %d right val : %d \n",root->val,right->val);
-        }
-        
-        if(!right){
-            return true;
-        }
-        else if(root->val >= right->val){
-            
-            return false;
-        }
-        return isValidRight(root, right->left) && isValidRight(root,right->right);
-    }
-    
-    bool isValidLeft(TreeNode* root, TreeNode* left){
-        if(!left){
-            return true;
-        }
-        else if(root->val <= left->val){
-            return false;
-        }
-        return isValidLeft(root, left->left) && isValidLeft(root,left->right);
-    }
+
 };
