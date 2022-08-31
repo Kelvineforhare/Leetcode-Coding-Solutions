@@ -21,15 +21,14 @@ public:
 class Solution {
 public:
     Node* cloneGraph(Node* node) {
-        
+        if(!node){
+            return nullptr;
+        }
         map<Node*,Node*> visited;
         return cloneG(node,visited);
     }
     
     Node* cloneG(Node* node, map<Node*,Node*> & visited){
-        if(!node){
-            return nullptr;
-        }
         Node* newNode = new Node(node->val);
         visited.insert({node,newNode});
         vector<Node*> neighborsCopy;
