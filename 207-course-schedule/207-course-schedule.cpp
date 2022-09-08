@@ -15,8 +15,7 @@ public:
             }
             
         }
-        
-        
+    
         set<int> correct;
         for ( auto it = mp.begin(); it != mp.end(); ++it  ){
             set<int> visit;
@@ -27,9 +26,6 @@ public:
             }
             correct.insert(it->first);
         }
-        
-        
-    
         return true;
     }
     
@@ -55,15 +51,3 @@ public:
         return true;
     }
 };
-
-//[[0,1],[1,2],[2,0]]
-
-
-        // for ( auto it = mp.begin(); it != mp.end(); ++it  )
-        // {
-        //     std::cout << (it->first) << '\t';
-        //     for(int i = 0; i < it->second.size();++i){
-        //         std::cout << "," << it->second[i] ;
-        //     }   
-        //     std::cout << std::endl;
-        // } 
