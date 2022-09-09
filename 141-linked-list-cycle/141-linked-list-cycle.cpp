@@ -9,7 +9,7 @@
 class Solution {
 public:
     bool hasCycle(ListNode *head) {
-        unordered_set<ListNode*> visit;
+        set<ListNode*> visit;
         while(head){
             auto insert = visit.insert(head);
             if(!insert.second){
