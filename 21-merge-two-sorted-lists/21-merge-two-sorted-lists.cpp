@@ -8,84 +8,27 @@
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
  */
+//if list 1 smaller than list 2 find the smallest after list
 class Solution {
 public:
     ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
-        ListNode* list;
-        if(list1 && !list2){
-            return list1;
+        if(!list1 && !list2){
+            return nullptr;
         }
         else if(!list1 && list2){
             return list2;
         }
-        else if (!list1 && !list2)
-        {
-            return nullptr;
+        else if(list1 && !list2){
+            return list1;
         }
-        ListNode* returnPointer;
-        if(list1->val == list2->val  ){
-            returnPointer = list1;
-            ListNode* temp = list1->next;
-            ListNode* temp2 = list2->next;
-            list = list1;
-            list->next= list2;
-            list = list2;
-            list1 = temp;
-            list2 = temp2;
-        }
-        else if(list1->val > list2->val){
-            returnPointer = list2;
-            list = list2;
-            list2 = list2->next;
+        //printf("list1: %d , list2: %d\n",list1->val,list2->val);
+        if(list1->val <= list2->val){
+            list1->next = mergeTwoLists(list1->next,list2);
+            return list1;
         }
         else{
-            returnPointer = list1;
-            list = list1;
-            list1 = list1->next;
+            list2->next = mergeTwoLists(list1,list2->next);
+            return list2;
         }
-        while(list1 && list2){
-            //cout << list->val;
-            if(list1->val == list2->val  ){
-                ListNode* temp = list1->next;
-                ListNode* temp2 = list2->next;
-                list->next = list1;
-                list = list1;
-                list->next= list2;
-                list = list2;
-                list1 = temp;
-                list2 = temp2;
-            }
-            else if (list1->val < list2->val)
-            {
-                ListNode* temp = list1->next;
-                list->next = list1;
-                list = list1;
-                list1 = temp;
-                
-            }
-            else if(!list2->next){
-                //cout << list2->val;
-                ListNode* temp = list2->next;
-                list->next = list2;
-                list = list2;
-                list2 = temp;
-            }
-            else{
-                cout << list2->val;
-                list->next = list2;
-                list = list2;
-                list2 = list2->next;
-            }
-        }
-        if(list1)
-        {
-            list->next = list1;
-        }
-        else if(list2)
-        {
-            list->next = list2;
-        }
-        return returnPointer;
-        
     }
 };
