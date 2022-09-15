@@ -22,13 +22,13 @@ public:
     int remove(ListNode* & head, int n,ListNode* previous) {
         if(head->next != nullptr){
             int nth = 1 + remove(head->next,n,head);
-            printf("val: %d n: %d\n",head->val,nth);
+            //printf("val: %d n: %d\n",head->val,nth);
             if(nth == n){
                 if(previous){
                     previous->next = previous->next->next;
                 }
                 else{
-                    printf("head: %d head->next: %d\n",head->val,head->next->val);
+                    //printf("head: %d head->next: %d\n",head->val,head->next->val);
                     head = head->next;
                 }
                 
