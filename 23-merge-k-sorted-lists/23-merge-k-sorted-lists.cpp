@@ -10,35 +10,51 @@
  */
 class Solution {
 public:
+    
+    struct{
+        bool operator() (const ListNode* l, const ListNode* r) const { return l->val > r->val; }
+    } customLess;
+    
     ListNode* mergeKLists(vector<ListNode*>& lists) {
-        tuple<int,ListNode*,int> sortList;
-        for(int i = 0; i < lists.size();++i){
-            if(lists[i]){
-                sortList = {lists[i]->val,lists[i],i};
-                break;
-            }
-        }
-        for(int i = 0; i < lists.size();++i){
-            if(lists[i]){
-                if(get<0>(sortList) > lists[i]->val){
-                    sortList = {lists[i]->val,lists[i],i};
+        int i = 0;
+        while(i < lists.size()){
+            if(!lists[i]){
+                if (i != lists.size() - 1)
+                {
+                    lists[i] = std::move(lists.back());
                 }
-                
+                lists.pop_back();
+            }
+            else{
+                ++i;
             }
         }
-        if(get<1>(sortList) == nullptr){
-            return nullptr;
+//         for(int i = 0;i < lists.size();++i){
+//             if(lists[i]){
+//                  printf("list %d",lists[i]->val);
+//             }
+//             else{
+//                 printf(" [ ] ");
+//             }
+           
+//         }
+        
+        priority_queue sortList(lists.begin(), lists.end(), customLess);
+        
+        ListNode* newList = new ListNode(0);
+        ListNode* returnList = newList;
+        //printf("size: %ld \n",sortList.size());
+        for(int i = 0; i < sortList.size(); sortList.pop()){
+            ListNode* node = sortList.top();
+            if(!node){
+                continue;
+            }
+            newList->next = node;
+            if(node->next){
+                sortList.push(node->next);
+            }
+            newList = newList->next;
         }
-        //sort(sortList.begin(),sortList.end());
-        lists[get<2>(sortList)] = get<1>(sortList)->next;
-        // for(int i = 0; i < lists.size();++i){
-        //     if(lists[i]){
-        //         printf("%d , ",lists[i]->val);
-        //     }
-        // }
-        // printf("\n");
-        get<1>(sortList)->next = mergeKLists(lists);            
-       
-        return get<1>(sortList);
+        return returnList->next;
     }
 };
