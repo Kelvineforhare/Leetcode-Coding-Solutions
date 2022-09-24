@@ -28,19 +28,16 @@ public:
             //printf("true\n");
             return true;
         }
-        
+        if(r>0 && heights[r-1][c] <= heights[r][c] && canReachPacific(r-1,c,heights,visited)){
+            return true;
+        }
+        if(c>0 && heights[r][c-1] <= heights[r][c] && canReachPacific(r,c-1,heights,visited)){
+            return true;
+        }
         if(r<heights.size()-1 && heights[r+1][c] <= heights[r][c] && canReachPacific(r+1,c,heights,visited)){
             return true;
         }
         if(c<heights[r].size()-1 && heights[r][c+1] <= heights[r][c] && canReachPacific(r,c+1,heights,visited)){
-            return true;
-        }
-        
-        if(r>0 && heights[r-1][c] <= heights[r][c] && canReachPacific(r-1,c,heights,visited)){
-            return true;
-        }
-        
-        if(c>0 && heights[r][c-1] <= heights[r][c] && canReachPacific(r,c-1,heights,visited)){
             return true;
         }
         //printf("false\n");
