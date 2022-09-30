@@ -4,7 +4,7 @@ public:
         int p1 = 0;
         int p2 = 1;
         
-        unordered_map<char,int> map;
+        map<char,int> map;
         if(s.size() == 0)return 0;
         int max = 1;
         map.insert({s[0],0});
