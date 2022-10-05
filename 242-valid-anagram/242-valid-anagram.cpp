@@ -11,9 +11,6 @@ public:
                 insert.first->second = insert.first->second + 1;
             }
         }
-        for(auto it = map.begin();it!=map.end();++it){
-            cout << it->first << " " << it->second << " \n";
-        }
         for(int i =0; i < t.size();++i){
             auto insert = map.insert({t[i],0});
             if(!insert.second){
@@ -24,7 +21,7 @@ public:
             }
         }
         for(auto it = map.begin();it!=map.end();++it){
-            cout << it->first << " " << it->second << " \n";
+            //cout << it->first << " " << it->second << " \n";
             if(it->second != 0){
                 return false;
             }
