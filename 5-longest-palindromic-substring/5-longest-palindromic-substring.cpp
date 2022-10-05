@@ -18,6 +18,9 @@ public:
                 ++p2;
                 
             }
+            if(ans.size() == s.size()){
+                return ans;
+            }
             p1 = i-1,p2=i;
             while((p1 >=0 && p2 < s.size()) && s[p2] == s[p1]){
                 string temp = s.substr(p1,(p2-p1)+1);
