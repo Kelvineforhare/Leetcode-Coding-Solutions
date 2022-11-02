@@ -1,8 +1,21 @@
 class Solution {
 public:
-    set<pair<int,int>> visited;
+    
+    // Hash function
+    struct hashFunction
+    {
+        size_t operator()(const pair<int , 
+                    int> &x) const
+            {
+            return x.first ^ x.second;
+            }
+    };
+    unordered_set<pair<int,int>,hashFunction> visited;
     vector<int> ret;
     vector<vector<int>> mat;
+
+    
+    
     vector<int> spiralOrder(vector<vector<int>>& matrix) {
         mat = matrix;
         int i = 0,j = 0;
